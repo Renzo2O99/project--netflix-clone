@@ -2,11 +2,16 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { Terms } from "../components/Terms";
 import { LoginForm } from "./LoginForm";
+import { auth } from "@/auth";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await auth();
+
   return (
     <div>
       <p className="text-2xl font-bold text-left mb-7 md:text-3xl">Iniciar Sesión</p>
+
+      <p>Session: {JSON.stringify(session)}</p>
 
       <LoginForm />
 

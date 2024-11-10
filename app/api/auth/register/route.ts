@@ -1,3 +1,4 @@
+import { getUserByEmail } from "@/data/user";
 import { db } from "@/lib/db";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
@@ -7,9 +8,7 @@ export async function POST(request: Request) {
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const existingUser = await db.user.findUnique({
-      where: { email },
-    });
+    const existingUser = await getUserByEmail(email);
 
     if (existingUser) {
       return new NextResponse("Email already exists", { status: 400 })

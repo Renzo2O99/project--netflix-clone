@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import toast, { Toaster } from 'react-hot-toast';
 
 // @refresh reset
 
@@ -31,6 +32,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-900`}
       >
         {children}
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+        />
       </body>
     </html>
   );

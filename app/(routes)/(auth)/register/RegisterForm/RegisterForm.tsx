@@ -15,9 +15,13 @@ import { Input } from "@/components/ui/input"
 import { formSchema } from "./RegisterForm.form"
 import { FormError } from "../../components/FormError"
 import { useState } from "react"
+import toast from "react-hot-toast"
+import { useRouter } from "next/navigation"
 
 export const RegisterForm = () => {
   const [error, setError] = useState<string | undefined>("No mames");
+
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -31,8 +35,12 @@ export const RegisterForm = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.post("/api/auth/register", values);
+
+      toast.success("El usuario se ha registrado correctamente")
+    
+      router.push("/profiles");
     } catch (error) {
-      console.log(error);
+      toast.error("Ha ocurrido un error al registrarse")
     }
   }
 
