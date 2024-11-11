@@ -15,6 +15,8 @@ import { formSchema } from "./LoginForm.form"
 import { z } from "zod"
 import { useState } from "react"
 import { FormError } from "../../components/FormError"
+import { login } from "@/actions/login"
+import toast from "react-hot-toast"
 
 export const LoginForm = () => {
   const [error, setError] = useState<string | undefined>("No mames");
@@ -26,8 +28,18 @@ export const LoginForm = () => {
     },
   })
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      login(values).then(data => {
+        setError(data?.error);
+
+        if (data?.success) {
+          toast.success("El Login se ha realizado exitosamente.");
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
