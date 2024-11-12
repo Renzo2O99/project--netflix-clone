@@ -12,7 +12,7 @@ export default async function ProfilePage() {
     where: {
       userId: session?.user?.id
     },
-  })
+  });
 
   return (
     <div className="h-full flex flex-col justify-center items-center bg-zinc-900">
