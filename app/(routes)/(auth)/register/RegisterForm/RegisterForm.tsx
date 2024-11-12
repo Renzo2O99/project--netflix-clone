@@ -19,7 +19,7 @@ import toast from "react-hot-toast"
 import { useRouter } from "next/navigation"
 
 export const RegisterForm = () => {
-  const [error, setError] = useState<string | undefined>("No mames");
+  const [error, setError] = useState<string | undefined>("");
 
   const router = useRouter();
 

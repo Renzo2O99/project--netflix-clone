@@ -17,9 +17,11 @@ import { useState } from "react"
 import { FormError } from "../../components/FormError"
 import { login } from "@/actions/login"
 import toast from "react-hot-toast"
+import { useRouter } from "next/router"
 
 export const LoginForm = () => {
-  const [error, setError] = useState<string | undefined>("No mames");
+  const router = useRouter();
+  const [error, setError] = useState<string | undefined>("");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -37,6 +39,8 @@ export const LoginForm = () => {
           toast.success("El Login se ha realizado exitosamente.");
         }
       })
+
+      router.push("/profiles");
     } catch (error) {
       console.log(error)
     }
