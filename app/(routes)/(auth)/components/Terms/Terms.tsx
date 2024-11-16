@@ -13,7 +13,7 @@ export const Terms = () => {
           Esta página utiliza Google reCAPTCHA para verificar que no eres un robot
         </span>
 
-        <Button className="opacity-1 text-[#0071EB] hover:bg-transparent p-0 ml-1 h-fit" variant="ghost" onClick={() => setShowExtraTerms(!showExtraTerms)}>
+        <Button onClick={() => setShowExtraTerms(!showExtraTerms)} className="opacity-1 text-[#0071EB] hover:bg-transparent p-0 ml-1 h-fit" variant="ghost">
           Más información
         </Button>
       </div>

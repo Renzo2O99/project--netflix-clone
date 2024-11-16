@@ -11,7 +11,7 @@ export default async function LoginPage() {
     <div>
       <p className="text-2xl font-bold text-left mb-7 md:text-3xl">Iniciar Sesión</p>
 
-      <p>Session: {JSON.stringify(session)}</p>
+      {/* TO-DO: <p>Session: {JSON.stringify(session)}</p> */}
 
       <LoginForm />
 

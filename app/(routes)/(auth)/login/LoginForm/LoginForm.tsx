@@ -3,13 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { formSchema } from "./LoginForm.form"
 import { z } from "zod"
@@ -17,7 +11,7 @@ import { useState } from "react"
 import { FormError } from "../../components/FormError"
 import { login } from "@/actions/login"
 import toast from "react-hot-toast"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -27,8 +21,9 @@ export const LoginForm = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
+      password: "",
     },
-  })
+  });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
